@@ -16,7 +16,6 @@ int validate_byr(char * input)
 	int val;
 	if (!sscanf(input, "byr:%4d", &val)) printf("PANIC!");
 	int ok = (val >= 1920 && val <= 2002);
-	//printf("byr: %d %d\n", val, ok);
 	return ok;
 }
 
@@ -25,7 +24,6 @@ int validate_iyr(char * input)
 	int val;
 	if (!sscanf(input, "iyr:%4d", &val)) printf("PANIC!");
 	int ok = (val >= 2010 && val <= 2020);
-	//printf("iyr: %d %d\n", val, ok);
 	return ok;
 }
 
@@ -34,7 +32,6 @@ int validate_eyr(char * input)
 	int val;
 	if (!sscanf(input, "eyr:%4d", &val)) printf("PANIC!");
 	int ok = (val >= 2020 && val <= 2030);
-	//printf("eyr: %d %d\n", val, ok);
 	return ok;
 }
 
@@ -84,12 +81,10 @@ int validate_ecl(char * input) {
 	return 0;
 }
 
-// 116 < X < 130
 int validate_pid(char * input) {
 	// a nine-digit number, including leading zeroes.
 	char * pid;
 	if (1 != sscanf(input, "pid:%ms", &pid)) { return 0; }
-	      //  555786686           555786686
 	if (strlen(pid) != 9) { return 0; }
 	for (int i = 0; i < 9; ++i) {
 		if ( (pid[i] >= '0' && pid[i] <= '9')) {
@@ -111,7 +106,13 @@ int main(int argc, char * argv[])
 	while (!feof(stdin)) {
 		int found = 0;
 		int valid = 1;
+		// When this loop condition is not met we started parsing on an
+		// empty line (the first character we hit is NOT NOT '\n')
 		while ((n = scanf("%m[^\n]", &tmp)) > 0) {
+			// When the body of this look is entered we have one
+			// valid line from the input in tmp.
+			// Tokenize it and handle each part of each line in the
+			// inner loop.
 			char * t = strtok(tmp, " ");
 			while (t) {
 				if             (!strncmp(t, "byr", 3)) {
