@@ -10,14 +10,14 @@ int main(int argc, char * argv[])
 	int totsum = 0;
 	int allsum = 0;
 	while (!feof(stdin)) {
-		// When this loop condition is not met we started parsing on an
-		// empty line (the first character we hit is NOT NOT '\n')
 		for (int i = 0; i < 50; i++) {
 			yes_answers[i] = 0;
 		}
 		int group_members = 0;
+		// When this loop condition is not met scanf started parsing on an
+		// empty line (the first character we hit is NOT NOT '\n')
 		while ((n = scanf("%m[^\n]", &tmp)) > 0) {
-			// When the body of this look is entered we have one
+			// When the body of this loop is entered we have one
 			// valid line from the input in tmp.
 			int j = 0;
 			group_members++;
