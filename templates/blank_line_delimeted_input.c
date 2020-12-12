@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <math.h>
 
-int yes_answers[50];
 int main(int argc, char * argv[])
 {
-	int part1_sum = 0;
-	int part2_sum = 0;
+	long long int part1_sum = 0;
+	long long int part2_sum = 0;
 	char * line;
 	while (!feof(stdin)) {
 		// When this loop condition is not met we started parsing on an
@@ -23,6 +23,6 @@ int main(int argc, char * argv[])
 		printf("--- group delimeter ---\n");
 		(void) getchar(); // eat up the second endline (on empty lines)
 	}
-	printf("Part1: %d\n", part1_sum);
-	printf("Part2: %d\n", part2_sum);
+	printf("Part1: %lld\n", part1_sum);
+	printf("Part2: %lld\n", part2_sum);
 }

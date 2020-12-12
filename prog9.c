@@ -15,7 +15,7 @@ int check(long long int val, int at)
 	return 0;
 }
 
-long long int find_sl(int s, int e)
+long long int find_smallest_largest(int s, int e)
 {
 	long long int smallest = numbers[s];
 	long long int biggest = numbers[s];
@@ -40,7 +40,6 @@ int main(int argc, char * argv[])
 
 	int ulimit = 0;
 	for (int i = 25; i < 1000; i++) {
-		printf("checking %d: %lld\n", i, numbers[i]);
 		if (!check(numbers[i], i)) {
 			part1_sum = numbers[i];
 			ulimit = i;
@@ -52,17 +51,13 @@ int main(int argc, char * argv[])
 	long long int start = 0;
 	long long int end = ulimit;
 	for (end = ulimit; end > 0; end--) {
-		printf("end %lld\n", end);
 		for (start = 0; start < end; start++) {
 			sum = 0;
 			for (int i = start; i < end; i++) {
 				sum += numbers[i];
 				if (sum > part1_sum) break;
 				if (sum == part1_sum) {
-					printf("XXXXXXXXX\n");
-					printf("%lld %d\n", start, i);
-					printf("%lld %lld\n", numbers[start], numbers[i]);
-					part2_sum = find_sl(start, i);
+					part2_sum = find_smallest_largest(start, i);
 					goto done;
 				}
 			}

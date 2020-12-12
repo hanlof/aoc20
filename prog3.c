@@ -12,7 +12,7 @@ int countslope(char * map, int sx, int sy)
 	int tx = 0;
 	int ty = 0;
 	while (ty < map_height) {
-		if (MAP_POS(tx, ty) == '#') trees++;
+		if (GLOBAL_MAP_POS(tx, ty) == '#') trees++;
 		ty += sy;
 		tx += sx;
 		if (tx >= map_width) tx -= map_width;
